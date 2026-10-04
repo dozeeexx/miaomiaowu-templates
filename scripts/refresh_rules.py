@@ -1,6 +1,7 @@
 """Stage, check and refresh public rules; preserve personal files and templates."""
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import os
@@ -11,6 +12,10 @@ import tempfile
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser()
+parser.add_argument('--accept-routing-changes', action='store_true',
+                    help='Accept reviewed classification changes; protected checks still apply')
+args = parser.parse_args()
 CORE = os.environ['MIHOMO_BINARY']
 POLICY = json.loads((ROOT / 'policy.json').read_text(encoding='utf-8'))
 MANIFEST = json.loads((ROOT / 'source-manifest.json').read_text(encoding='utf-8'))
@@ -54,19 +59,32 @@ with ThreadPoolExecutor(max_workers=4) as pool:
 new_manifest, removals = [], []
 with tempfile.TemporaryDirectory() as temp:
     stage = Path(temp)
+    datasets, source_urls = {}, {}
     for item, data, values in downloads:
         kind, filename = item['name'].split('/')
         name = filename.removesuffix('.list')
         if kind == 'domain':
             values, removed = sanitize(name, values)
             removals.extend(removed)
-            compiled_name = name
+        elif kind != 'ipcidr': raise ValueError(f'Unsupported source kind: {kind}')
+        datasets[(kind, name)] = values
+        source_urls[(kind, name)] = item['url']
+        new_manifest.append({'name': item['name'], 'url': item['url'], 'bytes': len(data),
+                             'sha256': hashlib.sha256(data).hexdigest(), 'ok': True})
+    merged = POLICY.get('merged_sets', {})
+    for name, members in merged.items():
+        datasets[('domain', name)] = list(dict.fromkeys(
+            value for member in members for value in datasets[('domain', member)]))
+        source_urls[('domain', name)] = 'policy.json merged_sets: ' + ', '.join(members)
+    merged_members = {member for members in merged.values() for member in members}
+    for (kind, name), values in datasets.items():
+        if kind == 'domain' and name in merged_members: continue
+        compiled_name = name if kind == 'domain' else name + '-ip'
+        if kind == 'domain':
             classical = list(dict.fromkeys(domain_rule(v) for v in values))
-        elif kind == 'ipcidr':
-            compiled_name = name + '-ip'
+        else:
             classical = [('IP-CIDR6' if ':' in v else 'IP-CIDR') + ',' + v +
                          (',no-resolve' if name in ['telegram', 'googlefcm'] else '') for v in values]
-        else: raise ValueError(f'Unsupported source kind: {kind}')
         rule_text = stage / 'rules' / 'mihomo' / (compiled_name + '.list')
         rule_text.parent.mkdir(parents=True, exist_ok=True)
         rule_text.write_text('\n'.join(values) + '\n', encoding='utf-8')
@@ -74,13 +92,13 @@ with tempfile.TemporaryDirectory() as temp:
                         str(rule_text.with_suffix('.mrs'))], check=True)
         output = stage / 'rules' / 'compat' / (compiled_name + '.list')
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(f'# Generated from {item["url"]}\n# Domain/IP rules only.\n' +
+        output.write_text(f'# Generated from {source_urls[(kind, name)]}\n# Domain/IP rules only.\n' +
                           '\n'.join(classical) + '\n', encoding='utf-8')
-        new_manifest.append({'name': item['name'], 'url': item['url'], 'bytes': len(data),
-                             'sha256': hashlib.sha256(data).hexdigest(), 'ok': True})
     # Validate the staged snapshots before overwriting current artifacts.
-    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'check_rules.py'),
-                    '--data-root', str(stage), '--audit-output', str(stage / 'routing-audit.json')], check=True)
+    check_command = [sys.executable, str(ROOT / 'scripts' / 'check_rules.py'),
+                     '--data-root', str(stage), '--audit-output', str(stage / 'routing-audit.json')]
+    if args.accept_routing_changes: check_command.append('--accept-routing-changes')
+    subprocess.run(check_command, check=True)
     for file in (stage / 'rules').rglob('*'):
         if file.is_file():
             # Compiler inputs stay temporary; clients use MRS or true classical text.

@@ -31,7 +31,7 @@ dns:
     - "+.home.arpa"
     - "+.internal"
     - "localhost"
-    - "rule-set:cn,apple-cn,microsoft-cn,games-cn"
+    - "rule-set:domestic"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "captive.apple.com"
@@ -54,7 +54,7 @@ dns:
     "rule-set:personal-sites":
       - "https://1.1.1.1/dns-query#自用网站"
       - "https://8.8.8.8/dns-query#自用网站"
-    "rule-set:cn,apple-cn,microsoft-cn,games-cn":
+    "rule-set:domestic":
       - "https://dns.alidns.com/dns-query#DIRECT"
       - "https://doh.pub/dns-query#DIRECT"
     "rule-set:ai":
@@ -181,36 +181,12 @@ rule-providers:
     path: "./rules/daily-v3/personal-sites.list"
     interval: 3600
     proxy: "节点选择"
-  cn:
+  domestic:
     type: "http"
     behavior: "classical"
     format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/cn.list"
-    path: "./rules/daily-v3/cn.list"
-    interval: 86400
-    proxy: "节点选择"
-  apple-cn:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/apple-cn.list"
-    path: "./rules/daily-v3/apple-cn.list"
-    interval: 86400
-    proxy: "节点选择"
-  microsoft-cn:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/microsoft-cn.list"
-    path: "./rules/daily-v3/microsoft-cn.list"
-    interval: 86400
-    proxy: "节点选择"
-  games-cn:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/games-cn.list"
-    path: "./rules/daily-v3/games-cn.list"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/domestic.list"
+    path: "./rules/daily-v3/domestic.list"
     interval: 86400
     proxy: "节点选择"
   ai:
@@ -285,60 +261,20 @@ rule-providers:
     path: "./rules/daily-v3/apple-proxy.list"
     interval: 86400
     proxy: "节点选择"
-  netflix:
+  streaming:
     type: "http"
     behavior: "classical"
     format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/netflix.list"
-    path: "./rules/daily-v3/netflix.list"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/streaming.list"
+    path: "./rules/daily-v3/streaming.list"
     interval: 86400
     proxy: "节点选择"
-  disney:
+  vendor-direct:
     type: "http"
     behavior: "classical"
     format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/disney.list"
-    path: "./rules/daily-v3/disney.list"
-    interval: 86400
-    proxy: "节点选择"
-  primevideo:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/primevideo.list"
-    path: "./rules/daily-v3/primevideo.list"
-    interval: 86400
-    proxy: "节点选择"
-  hbo:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/hbo.list"
-    path: "./rules/daily-v3/hbo.list"
-    interval: 86400
-    proxy: "节点选择"
-  twitch:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/twitch.list"
-    path: "./rules/daily-v3/twitch.list"
-    interval: 86400
-    proxy: "节点选择"
-  microsoft:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/microsoft.list"
-    path: "./rules/daily-v3/microsoft.list"
-    interval: 86400
-    proxy: "节点选择"
-  apple:
-    type: "http"
-    behavior: "classical"
-    format: "text"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/apple.list"
-    path: "./rules/daily-v3/apple.list"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/compat/vendor-direct.list"
+    path: "./rules/daily-v3/vendor-direct.list"
     interval: 86400
     proxy: "节点选择"
   google:
@@ -393,10 +329,7 @@ rules:
   - "IP-CIDR6,ff00::/8,DIRECT,no-resolve"
   - "RULE-SET,polymarket,Polymarket"
   - "RULE-SET,personal-sites,自用网站"
-  - "RULE-SET,cn,DIRECT"
-  - "RULE-SET,apple-cn,DIRECT"
-  - "RULE-SET,microsoft-cn,DIRECT"
-  - "RULE-SET,games-cn,DIRECT"
+  - "RULE-SET,domestic,DIRECT"
   - "RULE-SET,ai,AI"
   - "RULE-SET,crypto,加密货币"
   - "RULE-SET,youtube,YouTube"
@@ -406,13 +339,8 @@ rules:
   - "RULE-SET,socialmedia,海外社交"
   - "RULE-SET,gits,GitHub"
   - "RULE-SET,apple-proxy,Apple"
-  - "RULE-SET,netflix,海外流媒体"
-  - "RULE-SET,disney,海外流媒体"
-  - "RULE-SET,primevideo,海外流媒体"
-  - "RULE-SET,hbo,海外流媒体"
-  - "RULE-SET,twitch,海外流媒体"
-  - "RULE-SET,microsoft,DIRECT"
-  - "RULE-SET,apple,DIRECT"
+  - "RULE-SET,streaming,海外流媒体"
+  - "RULE-SET,vendor-direct,DIRECT"
   - "RULE-SET,google,Google"
   - "RULE-SET,telegram-ip,Telegram,no-resolve"
   - "RULE-SET,googlefcm-ip,Google,no-resolve"

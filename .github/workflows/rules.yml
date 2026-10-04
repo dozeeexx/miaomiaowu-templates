@@ -2,6 +2,12 @@ name: Validate and refresh rules
 
 on:
   workflow_dispatch:
+    inputs:
+      accept_routing_changes:
+        description: '仅在核对失败日志后接受分类变化；保护样例仍会检查'
+        type: boolean
+        required: false
+        default: false
   schedule:
     - cron: '30 0 * * *' # 08:30 UTC+8, best effort; GitHub may delay jobs
   push:
@@ -44,7 +50,14 @@ jobs:
         run: python3 scripts/check_rules.py
       - name: Refresh and validate staged upstream rules
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: python3 scripts/refresh_rules.py
+        env:
+          ACCEPT_ROUTING_CHANGES: ${{ inputs.accept_routing_changes }}
+        run: |
+          if [ "$ACCEPT_ROUTING_CHANGES" = 'true' ]; then
+            python3 scripts/refresh_rules.py --accept-routing-changes
+          else
+            python3 scripts/refresh_rules.py
+          fi
       - name: Commit verified public artifacts
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |

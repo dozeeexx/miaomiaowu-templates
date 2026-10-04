@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/tiktok.list
-# Domain/IP rules only.
+# Scope: domain/IP rules only; no process, keyword or ad blocking.
 DOMAIN,lf16-effectcdn.byteeffecttos-g.com
 DOMAIN,lf16-pkgcdn.pitaya-clientai.com
 DOMAIN,roovza-launches.appsflyersdk.com

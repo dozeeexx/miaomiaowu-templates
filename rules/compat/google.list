@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/google.list
-# Domain/IP rules only.
+# Scope: domain/IP rules only; no process, keyword or ad blocking.
 DOMAIN,google-ohttp-relay-safebrowsing.fastly-edge.com
 DOMAIN-SUFFIX,0emm.com
 DOMAIN-SUFFIX,1e100.net

@@ -29,6 +29,9 @@ def template_rules(path):
 
 files = sorted((ROOT / 'templates').glob('*_v3.yaml'))
 assert len(files) == 2, 'Exactly two stable templates required'
+group_blocks = [p.read_text(encoding='utf-8').split('\nproxy-groups:\n', 1)[1].split('\nrule-providers:\n', 1)[0]
+                for p in files]
+assert group_blocks[0] == group_blocks[1], 'Template group definitions differ; update both templates together'
 routes = template_rules(files[0])
 assert routes == template_rules(files[1]), 'Template routing differs'
 assert routes[-1] == 'MATCH,兜底', 'Final fallback changed'
@@ -57,9 +60,18 @@ def hit(domain, name):
         fnmatch.fnmatchcase(domain, p) for p in wildcard)
 
 def route(domain):
-    if domain == 'localhost' or any(domain.endswith('.' + d) for d in ['local', 'lan', 'home.arpa', 'internal']):
-        return 'DIRECT', [('private', 'DIRECT')]
-    matched = [(name, policy) for name, policy in order if name in patterns and hit(domain, name)]
+    domain = domain.lower().strip('.')
+    matched = []
+    for rule in routes:
+        fields = rule.split(',')
+        kind = fields[0]
+        if kind == 'RULE-SET' and fields[1] in patterns and hit(domain, fields[1]):
+            matched.append((fields[1], fields[2]))
+        elif kind in ['DOMAIN', 'DOMAIN-SUFFIX', 'DOMAIN-WILDCARD']:
+            pattern = fields[1].lower()
+            matches = (domain == pattern) if kind == 'DOMAIN' else (
+                domain == pattern or domain.endswith('.' + pattern)) if kind == 'DOMAIN-SUFFIX' else fnmatch.fnmatchcase(domain, pattern)
+            if matches: matched.append(('inline:' + pattern, fields[2]))
     return (matched[0][1] if matched else '兜底'), matched
 
 checks = json.loads((ROOT / 'checks.json').read_text(encoding='utf-8'))
@@ -70,6 +82,11 @@ assert not failed, f'Protected routes changed: {json.dumps(failed, ensure_ascii=
 # Audit overseas roots and representative suffix children, plus personal/protected hosts.
 # This is a finite regression corpus, not a proof over all possible future domains.
 candidates = set(checks)
+for rule in routes:
+    fields = rule.split(',')
+    if fields[0] in ['DOMAIN', 'DOMAIN-SUFFIX']:
+        candidates.add(fields[1].lower())
+        if fields[0] == 'DOMAIN-SUFFIX': candidates.add('probe.' + fields[1].lower())
 for name, policy in order:
     if name not in patterns or policy == 'DIRECT': continue
     exact, suffix, _ = patterns[name]

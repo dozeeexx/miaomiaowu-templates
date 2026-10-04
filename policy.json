@@ -41,5 +41,24 @@
     "youtube": [
       "yt3.ggpht.com"
     ]
+  },
+  "merged_sets": {
+    "domestic": [
+      "cn",
+      "apple-cn",
+      "microsoft-cn",
+      "games-cn"
+    ],
+    "streaming": [
+      "netflix",
+      "disney",
+      "primevideo",
+      "hbo",
+      "twitch"
+    ],
+    "vendor-direct": [
+      "microsoft",
+      "apple"
+    ]
   }
 }

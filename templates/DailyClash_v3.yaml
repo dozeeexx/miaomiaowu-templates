@@ -31,7 +31,7 @@ dns:
     - "+.home.arpa"
     - "+.internal"
     - "localhost"
-    - "rule-set:cn,apple-cn,microsoft-cn,games-cn"
+    - "rule-set:domestic"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
     - "captive.apple.com"
@@ -54,7 +54,7 @@ dns:
     "rule-set:personal-sites":
       - "https://1.1.1.1/dns-query#自用网站"
       - "https://8.8.8.8/dns-query#自用网站"
-    "rule-set:cn,apple-cn,microsoft-cn,games-cn":
+    "rule-set:domestic":
       - "https://dns.alidns.com/dns-query#DIRECT"
       - "https://doh.pub/dns-query#DIRECT"
     "rule-set:ai":
@@ -181,36 +181,12 @@ rule-providers:
     path: "./rules/daily-v3/personal-sites.list"
     interval: 3600
     proxy: "节点选择"
-  cn:
+  domestic:
     type: "http"
     behavior: "domain"
     format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/cn.mrs"
-    path: "./rules/daily-v3/cn.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  apple-cn:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/apple-cn.mrs"
-    path: "./rules/daily-v3/apple-cn.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  microsoft-cn:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/microsoft-cn.mrs"
-    path: "./rules/daily-v3/microsoft-cn.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  games-cn:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/games-cn.mrs"
-    path: "./rules/daily-v3/games-cn.mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/domestic.mrs"
+    path: "./rules/daily-v3/domestic.mrs"
     interval: 86400
     proxy: "节点选择"
   ai:
@@ -285,60 +261,20 @@ rule-providers:
     path: "./rules/daily-v3/apple-proxy.mrs"
     interval: 86400
     proxy: "节点选择"
-  netflix:
+  streaming:
     type: "http"
     behavior: "domain"
     format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/netflix.mrs"
-    path: "./rules/daily-v3/netflix.mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/streaming.mrs"
+    path: "./rules/daily-v3/streaming.mrs"
     interval: 86400
     proxy: "节点选择"
-  disney:
+  vendor-direct:
     type: "http"
     behavior: "domain"
     format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/disney.mrs"
-    path: "./rules/daily-v3/disney.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  primevideo:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/primevideo.mrs"
-    path: "./rules/daily-v3/primevideo.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  hbo:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/hbo.mrs"
-    path: "./rules/daily-v3/hbo.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  twitch:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/twitch.mrs"
-    path: "./rules/daily-v3/twitch.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  microsoft:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/microsoft.mrs"
-    path: "./rules/daily-v3/microsoft.mrs"
-    interval: 86400
-    proxy: "节点选择"
-  apple:
-    type: "http"
-    behavior: "domain"
-    format: "mrs"
-    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/apple.mrs"
-    path: "./rules/daily-v3/apple.mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/vendor-direct.mrs"
+    path: "./rules/daily-v3/vendor-direct.mrs"
     interval: 86400
     proxy: "节点选择"
   google:
@@ -393,10 +329,7 @@ rules:
   - "IP-CIDR6,ff00::/8,DIRECT,no-resolve"
   - "RULE-SET,polymarket,Polymarket"
   - "RULE-SET,personal-sites,自用网站"
-  - "RULE-SET,cn,DIRECT"
-  - "RULE-SET,apple-cn,DIRECT"
-  - "RULE-SET,microsoft-cn,DIRECT"
-  - "RULE-SET,games-cn,DIRECT"
+  - "RULE-SET,domestic,DIRECT"
   - "RULE-SET,ai,AI"
   - "RULE-SET,crypto,加密货币"
   - "RULE-SET,youtube,YouTube"
@@ -406,13 +339,8 @@ rules:
   - "RULE-SET,socialmedia,海外社交"
   - "RULE-SET,gits,GitHub"
   - "RULE-SET,apple-proxy,Apple"
-  - "RULE-SET,netflix,海外流媒体"
-  - "RULE-SET,disney,海外流媒体"
-  - "RULE-SET,primevideo,海外流媒体"
-  - "RULE-SET,hbo,海外流媒体"
-  - "RULE-SET,twitch,海外流媒体"
-  - "RULE-SET,microsoft,DIRECT"
-  - "RULE-SET,apple,DIRECT"
+  - "RULE-SET,streaming,海外流媒体"
+  - "RULE-SET,vendor-direct,DIRECT"
   - "RULE-SET,google,Google"
   - "RULE-SET,telegram-ip,Telegram,no-resolve"
   - "RULE-SET,googlefcm-ip,Google,no-resolve"

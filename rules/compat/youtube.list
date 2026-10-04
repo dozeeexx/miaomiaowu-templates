@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/youtube.list
-# Domain/IP rules only.
+# Scope: domain/IP rules only; no process, keyword or ad blocking.
 DOMAIN,yt3.googleusercontent.com
 DOMAIN-SUFFIX,googlevideo.com
 DOMAIN-SUFFIX,video.google.com

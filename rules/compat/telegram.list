@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list
-# Domain/IP rules only.
+# Scope: domain/IP rules only; no process, keyword or ad blocking.
 DOMAIN-SUFFIX,cdn-telegram.org
 DOMAIN-SUFFIX,comments.app
 DOMAIN-SUFFIX,contest.com
