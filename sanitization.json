@@ -1,0 +1,102 @@
+[
+  {
+    "set": "apple-cn",
+    "line": "7h15.ru1353t.1s.m4d3.by.5ukk4w.skk.moe",
+    "reason": "Upstream attribution marker, not a service domain"
+  },
+  {
+    "set": "ai",
+    "line": "7h15.ru1353t.1s.m4d3.by.5ukk4w.skk.moe",
+    "reason": "Upstream attribution marker, not a service domain"
+  },
+  {
+    "set": "ai",
+    "line": "+.auth0.com",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "ai",
+    "line": "+.byteoversea.com",
+    "reason": "Shared TikTok/AI vendor domain; keep TikTok classification"
+  },
+  {
+    "set": "youtube",
+    "line": "+.ggpht.cn",
+    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+  },
+  {
+    "set": "youtube",
+    "line": "+.ggpht.com",
+    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+  },
+  {
+    "set": "youtube",
+    "line": "+.gvt1.com",
+    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+  },
+  {
+    "set": "youtube",
+    "line": "+.gvt2.com",
+    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+  },
+  {
+    "set": "microsoft",
+    "line": "+.akadns.net",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "microsoft",
+    "line": "+.azureedge.net",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "microsoft",
+    "line": "+.azureedge.us",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "microsoft",
+    "line": "+.edgesuite.net",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "apple",
+    "line": "+.akadns.net",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "apple",
+    "line": "+.crashlytics.com",
+    "reason": "Google shared analytics service, not Apple-specific"
+  },
+  {
+    "set": "apple",
+    "line": "+.digicert.com",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "apple-proxy",
+    "line": "+.digicert.com",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "netflix",
+    "line": "+.onetrust.com",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
+    "set": "disney",
+    "line": "+.execute-api.us-east-1.amazonaws.com",
+    "reason": "Shared regional AWS API endpoint"
+  },
+  {
+    "set": "hbo",
+    "line": "+.execute-api.ap-southeast-1.amazonaws.com",
+    "reason": "Shared regional AWS API endpoint"
+  },
+  {
+    "set": "hbo",
+    "line": "+.execute-api.us-east-1.amazonaws.com",
+    "reason": "Shared regional AWS API endpoint"
+  }
+]

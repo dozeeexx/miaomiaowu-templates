@@ -1,0 +1,170 @@
+[
+  {
+    "name": "domain/apple-cn.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/apple-cn.list",
+    "bytes": 4483,
+    "sha256": "bb71eeca1d9f5b2a0e96a5ab71f8af1c72f27c17550af6dbcd8dbeecfc631b86",
+    "ok": true
+  },
+  {
+    "name": "domain/microsoft-cn.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/microsoft-cn.list",
+    "bytes": 4236,
+    "sha256": "29041f773b95263f9ae6eca8274cd898e4ca36d57941717a25dcafd29f52511c",
+    "ok": true
+  },
+  {
+    "name": "domain/ai.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/ai.list",
+    "bytes": 4178,
+    "sha256": "036cd395117d332a947b2a07de2a72d726016eb4b6b061cd200a07396b8d7e98",
+    "ok": true
+  },
+  {
+    "name": "domain/games-cn.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/games-cn.list",
+    "bytes": 1901,
+    "sha256": "72b6c159d6de6f55dda6fa8921d4a526ecb35f9593f421c61f5d81c45da299db",
+    "ok": true
+  },
+  {
+    "name": "domain/crypto.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/crypto.list",
+    "bytes": 6280,
+    "sha256": "299d9d151f016a04181da58220c5c5eb9e8077d7347133834d53a6ccbf310efd",
+    "ok": true
+  },
+  {
+    "name": "domain/google.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/google.list",
+    "bytes": 13650,
+    "sha256": "180cc5aed2c17232bc489f400cac8952c12761cd957a8646e9fea4a80db5b497",
+    "ok": true
+  },
+  {
+    "name": "domain/cn.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
+    "bytes": 1598261,
+    "sha256": "dee16b3bca62361a5b5f5e6cd7a790e56f886c2093d23634d98ec0e5ca63895a",
+    "ok": true
+  },
+  {
+    "name": "domain/youtube.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/youtube.list",
+    "bytes": 2767,
+    "sha256": "847add502a311aef4a8cf2fe46c975dff09a182828142eb328dcdce8be7e825b",
+    "ok": true
+  },
+  {
+    "name": "domain/gits.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/gits.list",
+    "bytes": 2079,
+    "sha256": "cfe2d22be585bc5e70dd097f63f13e720ec4b4f647520e07e89e2afdbba52303",
+    "ok": true
+  },
+  {
+    "name": "domain/microsoft.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/microsoft.list",
+    "bytes": 14026,
+    "sha256": "521195c962aaf17b1de112b965b3671ba24a2e9d72d66de2aa238895c517f64e",
+    "ok": true
+  },
+  {
+    "name": "domain/apple-proxy.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/apple-proxy.list",
+    "bytes": 959,
+    "sha256": "3ee9044cb73bdb541c9a2aa48f7b3a72a30299a340d63151471588f588b9a6c0",
+    "ok": true
+  },
+  {
+    "name": "domain/apple.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/apple.list",
+    "bytes": 31086,
+    "sha256": "0e628d68da4f317d9fa338b3caa33f05da89d2685a530df85e380c19ea563c39",
+    "ok": true
+  },
+  {
+    "name": "domain/socialmedia.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/socialmedia.list",
+    "bytes": 11743,
+    "sha256": "26d0bfb4e2a21494d169f546a9dd2d4ea700de42cfcdfcc9aa75f61897c591f1",
+    "ok": true
+  },
+  {
+    "name": "domain/primevideo.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/primevideo.list",
+    "bytes": 677,
+    "sha256": "71dae1dc2695452f77a3524f5311f47759be10920a58ecc7b96ffc02edc1e5ed",
+    "ok": true
+  },
+  {
+    "name": "domain/disney.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/disney.list",
+    "bytes": 4312,
+    "sha256": "5053aefbba549e6540d7920641670445742c40426dc8209931e05d3df2b3faa5",
+    "ok": true
+  },
+  {
+    "name": "domain/netflix.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/netflix.list",
+    "bytes": 618,
+    "sha256": "f2ac6f193351be6768ea125bd0f2fe18f6033942f4ee7a1142fee07eeb710741",
+    "ok": true
+  },
+  {
+    "name": "domain/spotify.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/spotify.list",
+    "bytes": 638,
+    "sha256": "c493403139e6863b798a3f4a7040d82dffe95b481e22a5857dc41c576b8658da",
+    "ok": true
+  },
+  {
+    "name": "domain/twitch.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/twitch.list",
+    "bytes": 916,
+    "sha256": "cfd8b59d748431a2f03d7a996ab1dbaf7cbe39cde29cd0149e40793ac27ca293",
+    "ok": true
+  },
+  {
+    "name": "domain/hbo.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/hbo.list",
+    "bytes": 1541,
+    "sha256": "1a07ae4f26c8783f47e55819d19bc47ef6f8ef57828acd2cd95d49c355c303b2",
+    "ok": true
+  },
+  {
+    "name": "domain/tiktok.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/tiktok.list",
+    "bytes": 2846,
+    "sha256": "f13fa40647203e5c5ef7535304d92aa6a9e4cb75bf003716b19a0e261e926665",
+    "ok": true
+  },
+  {
+    "name": "ipcidr/cn.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/ipcidr/cn.list",
+    "bytes": 327904,
+    "sha256": "04c58416979d969de6af27afc171703a73987be4203a514888f9a073361ce90f",
+    "ok": true
+  },
+  {
+    "name": "domain/telegram.list",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list",
+    "bytes": 293,
+    "sha256": "2448b2699519cd258b10232fcacd01e89b7db04c8ce7fc860a4962518370a329",
+    "ok": true
+  },
+  {
+    "name": "ipcidr/telegram.list",
+    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list",
+    "bytes": 192,
+    "sha256": "b0a0a5a4280f2c713a26bf1763317be5aefeda02e4e78dab7c2efbda02663181",
+    "ok": true
+  },
+  {
+    "name": "ipcidr/googlefcm.list",
+    "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/ipcidr/googlefcm.list",
+    "bytes": 471,
+    "sha256": "0d7f6205a882107d93f8085b92cccdabe49298ac13f7c414c59d289ffeeb02d0",
+    "ok": true
+  }
+]

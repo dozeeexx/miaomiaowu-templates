@@ -1,0 +1,420 @@
+# 妙妙屋 V3 日常模板 · 2026-10-04 精简发布版
+# FlClash / Clash Verge Rev: 推荐 Mihomo MRS 版。
+# Shadowrocket: 使用 Dailyxhj_v3.yaml，再在妙妙屋输出完整配置。
+# 模板不含真实节点。__PROXY_NODES__ 由妙妙屋 V3 注入。
+# AI / 加密货币 / Polymarket 首次使用时手动指定合适节点。
+# 客户端控制 TUN、系统代理和监听端口；本模板不强制接管它们。
+# 规则仓库: https://github.com/dozeeexx/miaomiaowu-templates
+# Apple 分组用于 apple-proxy 子集，其他 Apple 和大陆子集保持直连。
+# 兼容版转换后，小火箭 DNS 与规则更新时间须在 iOS 端单独验证。
+mode: "rule"
+log-level: "warning"
+allow-lan: false
+ipv6: true
+tcp-concurrent: true
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: true
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: false
+  enhanced-mode: "fake-ip"
+  fake-ip-range: "198.18.0.1/16"
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - "+.home.arpa"
+    - "+.internal"
+    - "localhost"
+    - "rule-set:cn,apple-cn,microsoft-cn,games-cn"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "captive.apple.com"
+  default-nameserver:
+    - "223.5.5.5"
+    - "119.29.29.29"
+  proxy-server-nameserver:
+    - "https://dns.alidns.com/dns-query#DIRECT"
+    - "https://doh.pub/dns-query#DIRECT"
+  direct-nameserver:
+    - "https://dns.alidns.com/dns-query#DIRECT"
+    - "https://doh.pub/dns-query#DIRECT"
+  nameserver:
+    - "https://1.1.1.1/dns-query#节点选择"
+    - "https://8.8.8.8/dns-query#节点选择"
+  nameserver-policy:
+    "rule-set:polymarket":
+      - "https://1.1.1.1/dns-query#Polymarket"
+      - "https://8.8.8.8/dns-query#Polymarket"
+    "rule-set:personal-sites":
+      - "https://1.1.1.1/dns-query#自用网站"
+      - "https://8.8.8.8/dns-query#自用网站"
+    "rule-set:cn,apple-cn,microsoft-cn,games-cn":
+      - "https://dns.alidns.com/dns-query#DIRECT"
+      - "https://doh.pub/dns-query#DIRECT"
+    "rule-set:ai":
+      - "https://1.1.1.1/dns-query#AI"
+      - "https://8.8.8.8/dns-query#AI"
+    "rule-set:crypto":
+      - "https://1.1.1.1/dns-query#加密货币"
+      - "https://8.8.8.8/dns-query#加密货币"
+proxies: null
+proxy-groups:
+  - name: "节点选择"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "自动选择"
+      - "__PROXY_NODES__"
+  - name: "自动选择"
+    type: "url-test"
+    include-all-proxies: true
+    proxies:
+      - "__PROXY_NODES__"
+    url: "https://cp.cloudflare.com/generate_204"
+    interval: 600
+    tolerance: 80
+    lazy: true
+  - name: "AI"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "__PROXY_NODES__"
+  - name: "加密货币"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "__PROXY_NODES__"
+  - name: "Polymarket"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "__PROXY_NODES__"
+  - name: "自用网站"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "DIRECT"
+      - "__PROXY_NODES__"
+  - name: "Google"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "YouTube"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "Telegram"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "海外社交"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "GitHub"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "海外流媒体"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "TikTok"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "Spotify"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "__PROXY_NODES__"
+  - name: "Apple"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "DIRECT"
+      - "__PROXY_NODES__"
+  - name: "兜底"
+    type: "select"
+    include-all-proxies: true
+    proxies:
+      - "节点选择"
+      - "DIRECT"
+      - "__PROXY_NODES__"
+rule-providers:
+  polymarket:
+    type: "http"
+    behavior: "classical"
+    format: "text"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/polymarket.list"
+    path: "./rules/daily-v3/polymarket.list"
+    interval: 3600
+    proxy: "节点选择"
+  personal-sites:
+    type: "http"
+    behavior: "classical"
+    format: "text"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/personal-sites.list"
+    path: "./rules/daily-v3/personal-sites.list"
+    interval: 3600
+    proxy: "节点选择"
+  cn:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/cn.mrs"
+    path: "./rules/daily-v3/cn.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  apple-cn:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/apple-cn.mrs"
+    path: "./rules/daily-v3/apple-cn.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  microsoft-cn:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/microsoft-cn.mrs"
+    path: "./rules/daily-v3/microsoft-cn.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  games-cn:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/games-cn.mrs"
+    path: "./rules/daily-v3/games-cn.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  ai:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/ai.mrs"
+    path: "./rules/daily-v3/ai.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  crypto:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/crypto.mrs"
+    path: "./rules/daily-v3/crypto.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  youtube:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/youtube.mrs"
+    path: "./rules/daily-v3/youtube.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  telegram:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/telegram.mrs"
+    path: "./rules/daily-v3/telegram.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  tiktok:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/tiktok.mrs"
+    path: "./rules/daily-v3/tiktok.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  spotify:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/spotify.mrs"
+    path: "./rules/daily-v3/spotify.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  socialmedia:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/socialmedia.mrs"
+    path: "./rules/daily-v3/socialmedia.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  gits:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/gits.mrs"
+    path: "./rules/daily-v3/gits.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  apple-proxy:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/apple-proxy.mrs"
+    path: "./rules/daily-v3/apple-proxy.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  netflix:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/netflix.mrs"
+    path: "./rules/daily-v3/netflix.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  disney:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/disney.mrs"
+    path: "./rules/daily-v3/disney.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  primevideo:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/primevideo.mrs"
+    path: "./rules/daily-v3/primevideo.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  hbo:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/hbo.mrs"
+    path: "./rules/daily-v3/hbo.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  twitch:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/twitch.mrs"
+    path: "./rules/daily-v3/twitch.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  microsoft:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/microsoft.mrs"
+    path: "./rules/daily-v3/microsoft.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  apple:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/apple.mrs"
+    path: "./rules/daily-v3/apple.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  google:
+    type: "http"
+    behavior: "domain"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/google.mrs"
+    path: "./rules/daily-v3/google.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  telegram-ip:
+    type: "http"
+    behavior: "ipcidr"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/telegram-ip.mrs"
+    path: "./rules/daily-v3/telegram-ip.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  googlefcm-ip:
+    type: "http"
+    behavior: "ipcidr"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/googlefcm-ip.mrs"
+    path: "./rules/daily-v3/googlefcm-ip.mrs"
+    interval: 86400
+    proxy: "节点选择"
+  cn-ip:
+    type: "http"
+    behavior: "ipcidr"
+    format: "mrs"
+    url: "https://raw.githubusercontent.com/dozeeexx/miaomiaowu-templates/main/rules/mihomo/cn-ip.mrs"
+    path: "./rules/daily-v3/cn-ip.mrs"
+    interval: 86400
+    proxy: "节点选择"
+rules:
+  - "DOMAIN,localhost,DIRECT"
+  - "DOMAIN-SUFFIX,local,DIRECT"
+  - "DOMAIN-SUFFIX,lan,DIRECT"
+  - "DOMAIN-SUFFIX,home.arpa,DIRECT"
+  - "DOMAIN-SUFFIX,internal,DIRECT"
+  - "IP-CIDR,0.0.0.0/8,DIRECT,no-resolve"
+  - "IP-CIDR,10.0.0.0/8,DIRECT,no-resolve"
+  - "IP-CIDR,100.64.0.0/10,DIRECT,no-resolve"
+  - "IP-CIDR,127.0.0.0/8,DIRECT,no-resolve"
+  - "IP-CIDR,169.254.0.0/16,DIRECT,no-resolve"
+  - "IP-CIDR,172.16.0.0/12,DIRECT,no-resolve"
+  - "IP-CIDR,192.168.0.0/16,DIRECT,no-resolve"
+  - "IP-CIDR,224.0.0.0/4,DIRECT,no-resolve"
+  - "IP-CIDR6,::1/128,DIRECT,no-resolve"
+  - "IP-CIDR6,fc00::/7,DIRECT,no-resolve"
+  - "IP-CIDR6,fe80::/10,DIRECT,no-resolve"
+  - "IP-CIDR6,ff00::/8,DIRECT,no-resolve"
+  - "RULE-SET,polymarket,Polymarket"
+  - "RULE-SET,personal-sites,自用网站"
+  - "RULE-SET,cn,DIRECT"
+  - "RULE-SET,apple-cn,DIRECT"
+  - "RULE-SET,microsoft-cn,DIRECT"
+  - "RULE-SET,games-cn,DIRECT"
+  - "RULE-SET,ai,AI"
+  - "RULE-SET,crypto,加密货币"
+  - "RULE-SET,youtube,YouTube"
+  - "RULE-SET,telegram,Telegram"
+  - "RULE-SET,tiktok,TikTok"
+  - "RULE-SET,spotify,Spotify"
+  - "RULE-SET,socialmedia,海外社交"
+  - "RULE-SET,gits,GitHub"
+  - "RULE-SET,apple-proxy,Apple"
+  - "RULE-SET,netflix,海外流媒体"
+  - "RULE-SET,disney,海外流媒体"
+  - "RULE-SET,primevideo,海外流媒体"
+  - "RULE-SET,hbo,海外流媒体"
+  - "RULE-SET,twitch,海外流媒体"
+  - "RULE-SET,microsoft,DIRECT"
+  - "RULE-SET,apple,DIRECT"
+  - "RULE-SET,google,Google"
+  - "RULE-SET,telegram-ip,Telegram,no-resolve"
+  - "RULE-SET,googlefcm-ip,Google,no-resolve"
+  - "RULE-SET,cn-ip,DIRECT"
+  - "MATCH,兜底"
