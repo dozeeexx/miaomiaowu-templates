@@ -17,27 +17,27 @@
   {
     "set": "ai",
     "line": "+.byteoversea.com",
-    "reason": "Shared TikTok/AI vendor domain; keep TikTok classification"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "youtube",
     "line": "+.ggpht.cn",
-    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "youtube",
     "line": "+.ggpht.com",
-    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "youtube",
     "line": "+.gvt1.com",
-    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "youtube",
     "line": "+.gvt2.com",
-    "reason": "Google shared download/image domain; retain dedicated YouTube hosts only"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "microsoft",
@@ -60,6 +60,11 @@
     "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
   },
   {
+    "set": "apple-proxy",
+    "line": "+.digicert.com",
+    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+  },
+  {
     "set": "apple",
     "line": "+.akadns.net",
     "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
@@ -67,7 +72,7 @@
   {
     "set": "apple",
     "line": "+.crashlytics.com",
-    "reason": "Google shared analytics service, not Apple-specific"
+    "reason": "Shared vendor domain has a more specific classification elsewhere"
   },
   {
     "set": "apple",
@@ -75,19 +80,14 @@
     "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
   },
   {
-    "set": "apple-proxy",
-    "line": "+.digicert.com",
-    "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
+    "set": "disney",
+    "line": "+.execute-api.us-east-1.amazonaws.com",
+    "reason": "Shared regional AWS API endpoint"
   },
   {
     "set": "netflix",
     "line": "+.onetrust.com",
     "reason": "Shared CDN / infrastructure suffix is not exclusive to this service"
-  },
-  {
-    "set": "disney",
-    "line": "+.execute-api.us-east-1.amazonaws.com",
-    "reason": "Shared regional AWS API endpoint"
   },
   {
     "set": "hbo",

@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/disney.list
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 DOMAIN-SUFFIX,112263.com
 DOMAIN-SUFFIX,20thcenturystudios.com
 DOMAIN-SUFFIX,20thcenturystudios.com.au

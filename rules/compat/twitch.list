@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/twitch.list
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 DOMAIN,d1g1f25tn8m2e6.cloudfront.net
 DOMAIN,d1m7jfoe9zdc1j.cloudfront.net
 DOMAIN,d1mhjrowxxagfy.cloudfront.net

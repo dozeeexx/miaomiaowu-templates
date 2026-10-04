@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 DOMAIN-SUFFIX,0.xn--czrs0t
 DOMAIN-SUFFIX,0.xn--unup4y
 DOMAIN-SUFFIX,0.zone
