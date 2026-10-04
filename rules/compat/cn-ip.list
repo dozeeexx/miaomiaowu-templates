@@ -1,5 +1,5 @@
 # Generated from https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/ipcidr/cn.list
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 IP-CIDR,1.0.1.0/24
 IP-CIDR,1.0.2.0/23
 IP-CIDR,1.0.32.0/19

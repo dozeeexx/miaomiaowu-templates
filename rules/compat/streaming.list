@@ -1,5 +1,5 @@
 # Generated from policy.json merged_sets: netflix, disney, primevideo, hbo, twitch
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 DOMAIN,e13252.dscg.akamaiedge.net
 DOMAIN,h-netflix.online-metrix.net
 DOMAIN-SUFFIX,cookielaw.org

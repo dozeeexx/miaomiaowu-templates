@@ -1,5 +1,5 @@
 # Generated from policy.json merged_sets: microsoft, apple
-# Scope: domain/IP rules only; no process, keyword or ad blocking.
+# Domain/IP rules only.
 DOMAIN,github-api.arkoselabs.com
 DOMAIN,github-cloud.s3.amazonaws.com
 DOMAIN,github-production-release-asset-2e65be.s3.amazonaws.com
