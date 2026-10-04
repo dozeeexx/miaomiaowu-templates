@@ -38,6 +38,23 @@ assert routes[-1] == 'MATCH,兜底', 'Final fallback changed'
 order = [(r.split(',')[1], r.split(',')[2]) for r in routes if r.startswith('RULE-SET,')]
 assert order[0:2] == [('polymarket', 'Polymarket'), ('personal-sites', '自用网站')]
 assert dict(order).get('googlefcm-ip') == 'Google', 'FCM IPs must follow Google'
+play_route = 'DOMAIN,services.googleapis.cn,Google'
+assert routes.index('RULE-SET,personal-sites,自用网站') < routes.index(play_route) < routes.index('RULE-SET,domestic,DIRECT'), 'Play exception must follow personal policies and precede domestic'
+
+# Protect scoped Play DNS without redirecting the entire Google/YouTube set.
+# Templates use a deliberately simple quoted YAML structure; no YAML dependency.
+play_dns = ['services.googleapis.cn', 'clientservices.googleapis.com',
+            'play.googleapis.com', 'play.google.com', 'play-lh.googleusercontent.com',
+            '+.xn--ngstr-lra8j.com', '+.gvt1.com']
+for file in files:
+    text = file.read_text(encoding='utf-8')
+    block = text.split('\n  nameserver-policy:\n', 1)[1].split('\nproxies:', 1)[0]
+    assert block.index('"rule-set:polymarket"') < block.index('"rule-set:personal-sites"') < block.index('"rule-set:domestic"'), f'Personal DNS priority changed: {file.name}'
+    for host in play_dns:
+        policy = re.search(r'^    ' + re.escape(json.dumps(host)) + r':\n((?:      - .+\n)+)', block, re.MULTILINE)
+        assert policy, f'Missing Play DNS policy: {file.name}: {host}'
+        resolvers = [json.loads(line.strip()[2:]) for line in policy.group(1).splitlines()]
+        assert resolvers == ['https://1.1.1.1/dns-query#Google', 'https://8.8.8.8/dns-query#Google'], f'Play DNS must follow Google: {file.name}: {host}'
 
 patterns = {}
 for name, _ in order:

@@ -1,6 +1,6 @@
 # 妙妙屋 V3 日常模板 · 2026-10-04 精简发布版
 # FlClash / Clash Verge Rev: 推荐 Mihomo MRS 版。
-# Shadowrocket: 使用 Dailyxhj_v3.yaml，再在妙妙屋输出完整配置。
+# Shadowrocket: 使用 Dailyxhj_v3.yaml + t=clash-to-shadowrocket，导入配置订阅。
 # 模板不含真实节点。__PROXY_NODES__ 由妙妙屋 V3 注入。
 # AI / 加密货币 / Polymarket 首次使用时手动指定合适节点。
 # 客户端控制 TUN、系统代理和监听端口；本模板不强制接管它们。
@@ -48,6 +48,28 @@ dns:
     - "https://dns.alidns.com/dns-query"
     - "https://doh.pub/dns-query"
   nameserver-policy:
+    # Mihomo DNS 策略；小火箭解析效果需实测，原生 conf 转换不会移植，见 README。
+    "services.googleapis.cn":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "clientservices.googleapis.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "play.googleapis.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "play.google.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "play-lh.googleusercontent.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "+.xn--ngstr-lra8j.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
+    "+.gvt1.com":
+      - "https://1.1.1.1/dns-query#Google"
+      - "https://8.8.8.8/dns-query#Google"
     "rule-set:polymarket":
       - "https://1.1.1.1/dns-query#Polymarket"
       - "https://8.8.8.8/dns-query#Polymarket"
@@ -329,6 +351,7 @@ rules:
   - "IP-CIDR6,ff00::/8,DIRECT,no-resolve"
   - "RULE-SET,polymarket,Polymarket"
   - "RULE-SET,personal-sites,自用网站"
+  - "DOMAIN,services.googleapis.cn,Google"
   - "RULE-SET,domestic,DIRECT"
   - "RULE-SET,ai,AI"
   - "RULE-SET,crypto,加密货币"
