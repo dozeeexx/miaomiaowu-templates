@@ -32,16 +32,26 @@ assert len(files) == 2, 'Exactly two stable templates required'
 group_blocks = [p.read_text(encoding='utf-8').split('\nproxy-groups:\n', 1)[1].split('\nrule-providers:\n', 1)[0]
                 for p in files]
 assert group_blocks[0] == group_blocks[1], 'Template group definitions differ; update both templates together'
+group_entries = re.findall(r'^  - name: ([^\n]+)\n(.*?)(?=^  - name: |\Z)', group_blocks[0], re.MULTILINE | re.DOTALL)
+assert len(group_entries) == 16 and len({json.loads(name) for name, _ in group_entries}) == 16, 'Expected 16 unique groups'
+for name, body in group_entries:
+    name = json.loads(name)
+    members = re.findall(r'^      - (.+)$', body, re.MULTILINE)
+    members = [json.loads(member) for member in members]
+    if '    type: "select"' in body and name != '🎯 节点选择':
+        assert members[0] == '🎯 节点选择', f'Service selector must default to global selection: {name}'
+    if name == '⚡ 自动选择':
+        assert members == ['__PROXY_NODES__'], 'Automatic selection must only include real nodes; avoid selection cycles'
 routes = template_rules(files[0])
 assert routes == template_rules(files[1]), 'Template routing differs'
-assert routes[-1] == 'MATCH,兜底', 'Final fallback changed'
+assert routes[-1] == 'MATCH,🧭 兜底', 'Final fallback changed'
 order = [(r.split(',')[1], r.split(',')[2]) for r in routes if r.startswith('RULE-SET,')]
-assert order[0:2] == [('polymarket', 'Polymarket'), ('personal-sites', '自用网站')]
-assert dict(order).get('googlefcm-ip') == 'Google', 'FCM IPs must follow Google'
-play_route = 'DOMAIN,services.googleapis.cn,Google'
-assert routes.index('RULE-SET,personal-sites,自用网站') < routes.index(play_route) < routes.index('RULE-SET,domestic,DIRECT'), 'Play exception must follow personal policies and precede domestic'
+assert order[0:2] == [('polymarket', '🧩 自定义1'), ('personal-sites', '🔖 自定义2')]
+assert dict(order).get('googlefcm-ip') == '🌐 Google', 'FCM IPs must follow 🌐 Google'
+play_route = 'DOMAIN,services.googleapis.cn,🌐 Google'
+assert routes.index('RULE-SET,personal-sites,🔖 自定义2') < routes.index(play_route) < routes.index('RULE-SET,domestic,DIRECT'), 'Play exception must follow personal policies and precede domestic'
 
-# Protect scoped Play DNS without redirecting the entire Google/YouTube set.
+# Protect scoped Play DNS without redirecting the entire 🌐 Google/📺 YouTube set.
 # Templates use a deliberately simple quoted YAML structure; no YAML dependency.
 play_dns = ['services.googleapis.cn', 'clientservices.googleapis.com',
             'play.googleapis.com', 'play.google.com', 'play-lh.googleusercontent.com',
@@ -54,7 +64,7 @@ for file in files:
         policy = re.search(r'^    ' + re.escape(json.dumps(host)) + r':\n((?:      - .+\n)+)', block, re.MULTILINE)
         assert policy, f'Missing Play DNS policy: {file.name}: {host}'
         resolvers = [json.loads(line.strip()[2:]) for line in policy.group(1).splitlines()]
-        assert resolvers == ['https://1.1.1.1/dns-query#Google', 'https://8.8.8.8/dns-query#Google'], f'Play DNS must follow Google: {file.name}: {host}'
+        assert resolvers == ['https://1.1.1.1/dns-query#🌐 Google', 'https://8.8.8.8/dns-query#🌐 Google'], f'Play DNS must follow 🌐 Google: {file.name}: {host}'
 
 patterns = {}
 for name, _ in order:
@@ -89,7 +99,7 @@ def route(domain):
             matches = (domain == pattern) if kind == 'DOMAIN' else (
                 domain == pattern or domain.endswith('.' + pattern)) if kind == 'DOMAIN-SUFFIX' else fnmatch.fnmatchcase(domain, pattern)
             if matches: matched.append(('inline:' + pattern, fields[2]))
-    return (matched[0][1] if matched else '兜底'), matched
+    return (matched[0][1] if matched else '🧭 兜底'), matched
 
 checks = json.loads((ROOT / 'checks.json').read_text(encoding='utf-8'))
 failed = [{'domain': host, 'expected': expected, 'actual': route(host)[0]}
@@ -124,7 +134,7 @@ if baseline_path.exists() and not args.accept_routing_changes:
     baseline = json.loads(baseline_path.read_text(encoding='utf-8'))
     changes = [{'domain': host, 'old': old, 'new': route(host)[0]}
                for host, old in baseline['domain_winners'].items()
-               if route(host)[0] != old and route(host)[0] not in ['Polymarket', '自用网站']]
+               if route(host)[0] != old and route(host)[0] not in ['🧩 自定义1', '🔖 自定义2']]
     new_pairs = pairs - {tuple(p) for p in baseline['allowed_group_pairs']}
     assert not changes, f'Known classifications changed; update held: {json.dumps(changes[:30], ensure_ascii=False)}'
     assert not new_pairs, f'New cross-group overlaps; update held: {sorted(new_pairs)}'

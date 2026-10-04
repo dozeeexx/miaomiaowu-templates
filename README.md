@@ -10,7 +10,7 @@
 |---|---|
 | 国内访问与下载顺畅 | 大陆域名/IP、厂商大陆服务和已收录的游戏/下载域名优先直连 |
 | 海外日常服务按用途选节点 | 覆盖 AI、加密货币、社交、开发、视频和音乐等分类 |
-| 特定服务保持独立出口 | AI、加密货币、Polymarket 手动选择实际节点 |
+| 特定服务保持独立出口 | AI、加密货币、自定义1 可手动选择实际节点 |
 | 个人网站持续补充 | 两份个人规则文件提供固定入口，不在 README 展示自用网站清单 |
 | 模板简单、维护成本低 | 保留 16 个分组、18 个 provider、37 条顶层规则；仅一个测速组 |
 | 规则长期更新且便于恢复 | 公共规则定时刷新、检查后发布；固定模板名、Git 提交与回滚说明 |
@@ -25,13 +25,15 @@
 
 | 分组 | 默认与用途 |
 |---|---|
-| 节点选择 | 默认自动选择；也可手选实际节点 |
-| 自动选择 | 唯一测速组；按需每 600 秒测可用性/延迟，容差 80 ms |
-| AI、加密货币、Polymarket | 各自手选实际节点；初次载入通常选列表首个节点，请主动确认 |
-| 自用网站 | 默认节点选择；也可选 DIRECT 或实际节点 |
-| Google、YouTube、Telegram、海外社交、GitHub、海外流媒体、TikTok、Spotify | 默认节点选择；可各自手选实际节点 |
-| Apple | 仅控制 `apple-proxy` 海外子集；默认节点选择，也可选 DIRECT |
-| 兜底 | 未分类流量默认节点选择；可选 DIRECT 或实际节点 |
+| 🎯 节点选择 | 默认自动选择；也可手选实际节点 |
+| ⚡ 自动选择 | 唯一测速组；按需每 600 秒测可用性/延迟，容差 80 ms |
+| 🤖 AI、💰 加密货币、🧩 自定义1 | 默认跟随节点选择；可手动指定实际节点 |
+| 🔖 自定义2 | 默认节点选择；也可选 DIRECT 或实际节点 |
+| 🌐 Google、📺 YouTube、✈️ Telegram、💬 海外社交、🐙 GitHub、🎬 海外流媒体、🎵 TikTok、🎧 Spotify | 默认节点选择；可各自手选实际节点 |
+| 🍎 Apple | 仅控制 `apple-proxy` 海外子集；默认节点选择，也可选 DIRECT |
+| 🧭 兜底 | 未分类流量默认节点选择；可选 DIRECT 或实际节点 |
+
+所有服务选择组都提供 `🎯 节点选择` 和实际节点，默认跟随全局选择，之后可逐组手选。`⚡ 自动选择` 只包含实际节点，避免与全局选择形成循环。图标是分组名称的一部分。`🧩 自定义1` 沿用 Polymarket 规则，`🔖 自定义2` 沿用个人网站规则；规则文件名、来源和优先级不变。
 
 海外流媒体合并 Netflix、Disney+、Prime Video、HBO、Twitch。TikTok、Spotify 独立。普通 Microsoft/Apple 服务与其大陆子集直连；Copilot 归 AI，GitHub 单独分流。Apple 分组不能切换所有 Apple 请求的出口。
 
@@ -41,23 +43,23 @@
 
 | 分组 / 策略 | 常用软件、网站、场景 | 范围或例外 |
 |---|---|---|
-| 节点选择 | 多数海外服务的默认出口入口 | 默认自动选择；服务组另选实际节点后，不再跟随这里 |
-| 自动选择 | 自动选可用、延迟较低的节点 | 不单独匹配网站；供节点选择使用，延迟不代表吞吐 |
-| AI | ChatGPT/OpenAI、Claude、Gemini、Copilot、Cursor、Perplexity、Grok、Meta AI | 专用 AI 域名优先；不是整个 Google、Microsoft、X、Facebook 都归 AI |
-| 加密货币 | Binance、OKX、Bybit、Bitget，集合内的钱包、RPC、行情网站；Fragment | Polymarket 主域另归专用组；第三方依赖按自己的规则 |
-| Polymarket | 主站、CLOB、Gamma/Data API、主域下 WebSocket | `polymarket.com` 及全部子域 |
-| 自用网站 | 个人常用网站与小众服务 | 清单自行维护；公开说明不列举实际域名 |
-| Google | 搜索、Gmail、Google Drive、Maps、Play、普通 Google API、安卓 FCM | Gemini → AI；YouTube → YouTube；大陆子集先直连，Play 控制接口有精确例外 |
-| YouTube | YouTube 视频、直播、视频 CDN；YouTube Music 的同域请求 | `youtube.com`、`googlevideo.com` 等；通用 Google 登录/资源可走 Google |
-| Telegram | Telegram、`t.me`、Bot API、集合内服务器 IP | Fragment → 加密货币 |
-| 海外社交 | X/Twitter、Facebook、Instagram、Threads、Messenger、WhatsApp、Discord、LINE、Signal | 含 twimg、fbcdn、cdninstagram 等专用资源；Grok/Meta AI 专用域名 → AI |
-| GitHub | GitHub 网页/Raw/发布下载、GitLab、GitBook、npm 官方仓库 | 名称虽为 GitHub，范围是 `gits` 开发服务集合；Gitee → DIRECT，Copilot 专用域名 → AI |
-| 海外流媒体 | Netflix、Disney+、Prime Video、HBO/Max、Twitch | 不包含所有海外视频网站；TikTok、Spotify、YouTube 另分 |
-| TikTok | TikTok 与集合内视频资源 | 国内抖音 → DIRECT；MarsCode/Trae 的 AI 域名 → AI |
-| Spotify | Spotify 音乐、播客与专用资源 | `spotify.com`、`scdn.co` 等 |
-| Apple | Apple Developer、TestFlight、`tv.apple.com`、指定 Apple 海外服务主机 | 仅命中 `apple-proxy` 且未被大陆规则抢先匹配的请求 |
+| 🎯 节点选择 | 多数海外服务的默认出口入口 | 默认自动选择；服务组另选实际节点后，不再跟随这里 |
+| ⚡ 自动选择 | 自动选可用、延迟较低的节点 | 不单独匹配网站；供节点选择使用，延迟不代表吞吐 |
+| 🤖 AI | ChatGPT/OpenAI、Claude、Gemini、Copilot、Cursor、Perplexity、Grok、Meta AI | 专用 AI 域名优先；不是整个 Google、Microsoft、X、Facebook 都归 AI |
+| 💰 加密货币 | Binance、OKX、Bybit、Bitget，集合内的钱包、RPC、行情网站；Fragment | Polymarket 主域另归专用组；第三方依赖按自己的规则 |
+| 🧩 自定义1 | Polymarket 主站、CLOB、Gamma/Data API、主域下 WebSocket | `polymarket.com` 及全部子域 |
+| 🔖 自定义2 | 个人常用网站与小众服务 | 清单自行维护；公开说明不列举实际域名 |
+| 🌐 Google | 搜索、Gmail、Google Drive、Maps、Play、普通 Google API、安卓 FCM | Gemini → AI；YouTube → YouTube；大陆子集先直连，Play 控制接口有精确例外 |
+| 📺 YouTube | YouTube 视频、直播、视频 CDN；YouTube Music 的同域请求 | `youtube.com`、`googlevideo.com` 等；通用 Google 登录/资源可走 Google |
+| ✈️ Telegram | Telegram、`t.me`、Bot API、集合内服务器 IP | Fragment → 加密货币 |
+| 💬 海外社交 | X/Twitter、Facebook、Instagram、Threads、Messenger、WhatsApp、Discord、LINE、Signal | 含 twimg、fbcdn、cdninstagram 等专用资源；Grok/Meta AI 专用域名 → AI |
+| 🐙 GitHub | GitHub 网页/Raw/发布下载、GitLab、GitBook、npm 官方仓库 | 名称虽为 GitHub，范围是 `gits` 开发服务集合；Gitee → DIRECT，Copilot 专用域名 → AI |
+| 🎬 海外流媒体 | Netflix、Disney+、Prime Video、HBO/Max、Twitch | 不包含所有海外视频网站；TikTok、Spotify、YouTube 另分 |
+| 🎵 TikTok | TikTok 与集合内视频资源 | 国内抖音 → DIRECT；MarsCode/Trae 的 AI 域名 → AI |
+| 🎧 Spotify | Spotify 音乐、播客与专用资源 | `spotify.com`、`scdn.co` 等 |
+| 🍎 Apple | Apple Developer、TestFlight、`tv.apple.com`、指定 Apple 海外服务主机 | 仅命中 `apple-proxy` 且未被大陆规则抢先匹配的请求 |
 | DIRECT（非新增分组） | 微信/QQ、支付宝、淘宝/京东、B 站、抖音、小红书、知乎；普通 Microsoft/Apple 域名；局域网 | 例如 Outlook/Office/OneDrive/Teams 主要域名、App Store/iCloud/APNs；Steam 等已收录下载域名也直连 |
-| 兜底 | 当前没有专门收录的海外网站、论坛、购物和工具 | 如 Reddit、Quora、LinkedIn、Pinterest、Amazon/eBay、Notion 的主域通常在这里；Steam/Epic 商店主要域名也没有游戏专属组 |
+| 🧭 兜底 | 当前没有专门收录的海外网站、论坛、购物和工具 | 如 Reddit、Quora、LinkedIn、Pinterest、Amazon/eBay、Notion 的主域通常在这里；Steam/Epic 商店主要域名也没有游戏专属组 |
 
 Grok/Meta AI 使用独立域名时归 AI；如果某个内嵌功能的请求仍使用 `x.com` / `facebook.com`，则按海外社交处理，域名规则不能按 URL 路径区分。海外游戏加速器流量是否进入本模板，取决于加速器及客户端接管方式。
 
@@ -68,7 +70,7 @@ Grok/Meta AI 使用独立域名时归 AI；如果某个内嵌功能的请求仍�
 Mihomo 从上到下匹配，首个命中决定分组：
 
 1. 局域网、环回、私有地址直连。
-2. Polymarket、自用网站。
+2. 🧩 自定义1（Polymarket）、🔖 自定义2（个人网站）。
 3. Play 控制接口 `services.googleapis.cn` 精确匹配 Google；随后 `domestic` 的大陆域名、Apple/Microsoft 大陆子集、国内游戏/下载子集直连。
 4. AI → 加密货币 → YouTube → Telegram → TikTok → Spotify。
 5. 海外社交 → GitHub → Apple 海外子集 → 海外流媒体。
@@ -80,7 +82,7 @@ Mihomo 从上到下匹配，首个命中决定分组：
 
 | 交集或共用域名 | 当前结果与处理 |
 |---|---|
-| Polymarket / crypto | Polymarket |
+| Polymarket / crypto | 🧩 自定义1 |
 | YouTube / Google | YouTube；通用 Google 集合放后面 |
 | Telegram / 海外社交 | Telegram |
 | Fragment / Telegram / crypto | 加密货币 |
@@ -138,23 +140,23 @@ Mihomo 中，下列必要接口和下载域族的 DNS 经 Google 组发出：`se
 
 | 分类 | Henry 文档列出的来源 / 本模板实际采用 | 示例范围 |
 |---|---|---|
-| AI | MetaCubeX、SukkaW、ConnersHua、ACL4SSR | OpenAI、Gemini、Claude、Copilot、Groq、Perplexity、xAI、Cursor |
-| 加密货币 | BM7、Meta、ACL4SSR | Binance、OKX、Bybit、Bitget、集合内钱包/RPC/行情 |
-| Google | BM7、Meta | Google 搜索、邮件、网盘、地图、Play、API |
-| YouTube | BM7、Meta | 视频网站、视频 CDN、相关音乐服务同域请求 |
-| Telegram | 本模板直接读取 Meta 的独立 Telegram 域名与 IP，未依赖 Henry 的社交集合分类 | Telegram、t.me、Bot API、服务器 IP；Fragment 被更早的 crypto 分类接管 |
-| 海外社交 | BM7、Meta | X/Twitter、Facebook、Instagram、Threads、Discord、WhatsApp、LINE、Signal 等 |
-| GitHub（`gits`） | BM7、Meta | GitHub、GitLab、GitBook、npm 等；上游含 Gitee，但本模板大陆优先直连 |
-| 海外流媒体（`streaming`） | 五个原集合均为 BM7、Meta | Netflix、Disney+、Prime Video、HBO/Max、Twitch |
-| TikTok | BM7、Meta、jmdugan/blocklists | TikTok 及相关主机；这里只使用域名分类，不执行广告拦截 |
-| Spotify | BM7、Meta | Spotify 音乐、播客与专用 CDN |
-| Apple 分组（`apple-proxy`） | BM7、Elysian-Realme/FuGfConfig | Apple Developer、TestFlight、部分 Apple 海外服务 |
+| 🤖 AI | MetaCubeX、SukkaW、ConnersHua、ACL4SSR | OpenAI、Gemini、Claude、Copilot、Groq、Perplexity、xAI、Cursor |
+| 💰 加密货币 | BM7、Meta、ACL4SSR | Binance、OKX、Bybit、Bitget、集合内钱包/RPC/行情 |
+| 🌐 Google | BM7、Meta | Google 搜索、邮件、网盘、地图、Play、API |
+| 📺 YouTube | BM7、Meta | 视频网站、视频 CDN、相关音乐服务同域请求 |
+| ✈️ Telegram | 本模板直接读取 Meta 的独立 Telegram 域名与 IP，未依赖 Henry 的社交集合分类 | Telegram、t.me、Bot API、服务器 IP；Fragment 被更早的 crypto 分类接管 |
+| 💬 海外社交 | BM7、Meta | X/Twitter、Facebook、Instagram、Threads、Discord、WhatsApp、LINE、Signal 等 |
+| 🐙 GitHub（`gits`） | BM7、Meta | GitHub、GitLab、GitBook、npm 等；上游含 Gitee，但本模板大陆优先直连 |
+| 🎬 海外流媒体（`streaming`） | 五个原集合均为 BM7、Meta | Netflix、Disney+、Prime Video、HBO/Max、Twitch |
+| 🎵 TikTok | BM7、Meta、jmdugan/blocklists | TikTok 及相关主机；这里只使用域名分类，不执行广告拦截 |
+| 🎧 Spotify | BM7、Meta | Spotify 音乐、播客与专用 CDN |
+| 🍎 Apple 分组（`apple-proxy`） | BM7、Elysian-Realme/FuGfConfig | Apple Developer、TestFlight、部分 Apple 海外服务 |
 | 大陆域名直连（`domestic`） | cn：felixonmars/dnsmasq-china-list；apple-cn：felixonmars、SukkaW；microsoft-cn：Meta；games-cn：BM7、Meta | 大陆网站、Apple/Microsoft 大陆子集、收录的游戏/下载直连域名 |
 | 普通 Microsoft/Apple 直连（`vendor-direct`） | microsoft、apple：BM7、Meta | 普通微软/苹果域名；专门分类先匹配 |
 | 大陆 IP 直连（`cn-ip`） | NobyDa/geoip，经 Henry `cncidr` 导出为 `ipcidr/cn.list` | 未被更早规则分类的大陆目的 IP |
 | FCM IP → Google | BM7、Meta，经 Henry `googlefcm` 集合导出 | 精确推送 IP 补充；FCM 域名由 Google 集合覆盖 |
-| Polymarket、自用网站 | 本仓库个人维护，非 Henry 来源 | 预测市场专用规则、个人网站例外；自用域名清单不在本文展示 |
-| 节点选择、自动选择、兜底 | 模板策略逻辑，无独立上游规则集合 | 出口选择、测速、未分类流量 |
+| 🧩 自定义1、🔖 自定义2 | 本仓库个人维护，非 Henry 来源 | 预测市场专用规则、个人网站例外；自用域名清单不在本文展示 |
+| 🎯 节点选择、⚡ 自动选择、🧭 兜底 | 模板策略逻辑，无独立上游规则集合 | 出口选择、测速、未分类流量 |
 
 上游“示例范围”不等于所有请求最终归该组；本模板会清理共享规则并按前述优先级决定归属。具体下载 URL、快照校验值见 [source-manifest.json](source-manifest.json)。大陆 IP 的导出对应关系也已核对 Henry 的 [构建脚本](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/.github/workflows/Merge_ruleset.yml)。
 
@@ -169,11 +171,13 @@ Mihomo 中，下列必要接口和下载域族的 DNS 经 Google 组发出：`se
 
 1. 在妙妙屋 V3 中导入或上传对应模板，选择节点并生成订阅。桌面使用 DailyClash；小火箭使用 Dailyxhj，在妙妙屋订阅页面复制 **Shadowrocket** 专用链接，核对类型是 `t=clash-to-shadowrocket`。
 2. 客户端更新订阅后，检查分组和规则是否完整。纯节点订阅不包含本仓库的分流配置。
-3. 为 AI、加密货币、Polymarket 手动指定合适的实际节点；其他服务默认跟随“节点选择”。
+3. 各服务选择组默认跟随“🎯 节点选择”；按需给 🤖 AI、💰 加密货币、🧩 自定义1 或其他组手动指定实际节点。
 
 模板包含 `__PROXY_NODES__` 占位符，没有真实节点，不能直接作为客户端最终配置使用。系统代理、TUN、监听端口由客户端设置；模板不强制开启。
 
 **2026-10-04 精简版更换了 provider 名称。使用更早版本的用户需要在妙妙屋同步两份新版模板，并重新生成、刷新完整订阅；只刷新规则集不能完成升级。** 后续保留模板文件名，不按日期另建多份模板。
+
+**分组图标与名称升级**：本次所有分组增加图标，Polymarket → `🧩 自定义1`，自用网站 → `🔖 自定义2`。需要在妙妙屋同步两份模板、重新生成订阅，并在客户端刷新完整配置；只刷新规则集不会更新分组。名称变化后旧的分组选择记录可能无法沿用，请重新确认所选节点。
 
 ### 小火箭：选对下发路径
 
@@ -231,8 +235,8 @@ Google 集合覆盖 `mtalk.google.com`、安装注册等 FCM 域名；另保留 
 
 | 文件 | 用途 | 分组 |
 |---|---|---|
-| `rules/polymarket.list` | 预测市场主站、API、WebSocket 等专用域名 | Polymarket |
-| `rules/personal-sites.list` | 个人常用网站、小众服务及直连规则的例外 | 自用网站 |
+| `rules/polymarket.list` | 预测市场主站、API、WebSocket 等专用域名 | 🧩 自定义1 |
+| `rules/personal-sites.list` | 个人常用网站、小众服务及直连规则的例外 | 🔖 自定义2 |
 
 在 GitHub 编辑对应文件，每行写一条规则，**不附分组名称**。下面使用保留的示例域名，不代表实际清单：
 
@@ -243,11 +247,11 @@ DOMAIN-SUFFIX,example.invalid
 
 - `DOMAIN` 只匹配该主机；`DOMAIN-SUFFIX` 匹配根域及全部子域。
 - 注释以 `#` 开头。当前个人集合只接受这两种域名规则。
-- 两个集合均优先于大陆直连，Polymarket 优先于加密货币；精确主机例外不会扩大到整个根域。
+- 两个集合均优先于大陆直连，自定义1 的 Polymarket 规则优先于加密货币；精确主机例外不会扩大到整个根域。
 - 新增重要网站时，可在 `checks.json` 加入主站/API 的预期分组，保护后续更新。
 - 共享 CDN、云平台或钱包供应商仅在必要时添加明确的专用主机，避免扩大匹配范围。
 
-公共更新脚本保留两个个人文件和两份模板。提交后等待校验通过，再刷新客户端对应规则集。Polymarket 的第三方钱包、RPC、验证码按各自规则分流，初期可将 Polymarket 与加密货币选到同一适用节点。
+公共更新脚本保留两个个人文件和两份模板。提交后等待校验通过，再刷新客户端对应规则集。Polymarket 的第三方钱包、RPC、验证码按各自规则分流，初期可将 🧩 自定义1 与 💰 加密货币选到同一适用节点。
 
 隐私范围：本文不展示自用域名，但公共仓库里的个人规则文件、检查记录与历史提交仍可查看。需要保密的域名应维护在本地覆写或受控规则源，避免提交到公共仓库。
 
@@ -332,7 +336,7 @@ python scripts/refresh_rules.py --accept-routing-changes # 接受已审核的上
 
 - 两份展开配置通过；各 16 组、37 条顶层规则、18 个 provider，当前各加载 132,659 条规则。
 - 85 个受保护域名、5,599 个分类审计样例通过；Play 精确例外修正旧行为，其他已有样例分类未变。
-- 两份配置各通过 157 次本地路由/节点切换验证和 30 次 DNS/Fake-IP 验证，含 Play 域族、国内字体、AI、YouTube 的正反例。
+- 两份配置各通过 157 次本地路由/节点切换验证、28 次服务分组跟随全局节点切换验证和 30 次 DNS/Fake-IP 验证，含图标名称、Play 域族、国内字体、AI、YouTube 的正反例。
 - 实际刷新脚本验证了 32 份公共产物一致，并保留模板、个人文件和模拟的未来个人新增内容。
 - 模拟新 Crypto/Google 交集：普通更新被拦截且原文件保留；审核开关允许该变化。模拟大陆源抢走 ChatGPT：即使开关启用仍被保护检查拦截。
 
@@ -340,7 +344,7 @@ python scripts/refresh_rules.py --accept-routing-changes # 接受已审核的上
 
 ### DNS 与客户端边界
 
-桌面主模板让大陆集合返回真实 IP，使用国内 DoH；DIRECT 出站使用国内 DNS；节点域名独立解析。普通海外 DNS 经节点选择，AI、加密货币、Polymarket、自用网站的 DNS 使用对应策略；个人集合 DNS 优先于大陆集合。Play 的精确主机和下载域族另用 Google DNS 策略，`services.googleapis.cn` 即使命中大陆 Fake-IP 排除也使用 Google 解析。已验证对应本地 DNS 策略优先级，远程 DoH 的可达性仍需实测。
+桌面主模板让大陆集合返回真实 IP，使用国内 DoH；DIRECT 出站使用国内 DNS；节点域名独立解析。普通海外 DNS 经节点选择，AI、加密货币、自定义1、自定义2 的 DNS 使用对应策略；个人集合 DNS 优先于大陆集合。Play 的精确主机和下载域族另用 Google DNS 策略，`services.googleapis.cn` 即使命中大陆 Fake-IP 排除也使用 Google 解析。已验证对应本地 DNS 策略优先级，远程 DoH 的可达性仍需实测。
 
 系统代理不会接管所有 DNS 或应用流量。客户端覆写、TUN 设置、加速器可能改变行为；规则只能管理经过内核的连接。未知大陆域名可通过大陆 IP 补充直连，覆盖仍取决于上游数据及实际解析结果。
 
