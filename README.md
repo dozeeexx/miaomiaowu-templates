@@ -33,6 +33,34 @@
 
 海外流媒体合并 Netflix、Disney+、Prime Video、HBO、Twitch。TikTok、Spotify 独立。普通 Microsoft/Apple 服务与其大陆子集直连；Copilot 归 AI，GitHub 单独分流。Apple 分组不能切换所有 Apple 请求的出口。
 
+### 常用软件、网站与场景
+
+以下按当前域名规则与优先级说明主要请求的归属，不按整个应用进程分类：
+
+| 分组 / 策略 | 常用软件、网站、场景 | 范围或例外 |
+|---|---|---|
+| 节点选择 | 多数海外服务的默认出口入口 | 默认自动选择；服务组另选实际节点后，不再跟随这里 |
+| 自动选择 | 自动选可用、延迟较低的节点 | 不单独匹配网站；供节点选择使用，延迟不代表吞吐 |
+| AI | ChatGPT/OpenAI、Claude、Gemini、Copilot、Cursor、Perplexity、Grok、Meta AI | 专用 AI 域名优先；不是整个 Google、Microsoft、X、Facebook 都归 AI |
+| 加密货币 | Binance、OKX、Bybit、Bitget，集合内的钱包、RPC、行情网站；Fragment | Polymarket 主域另归专用组；第三方依赖按自己的规则 |
+| Polymarket | 主站、CLOB、Gamma/Data API、主域下 WebSocket | `polymarket.com` 及全部子域 |
+| 自用网站 | `cdn.jucode.cn`、`shlii.io` 及其子域 | 仅前者精确主机，不包含整个 `jucode.cn` |
+| Google | 搜索、Gmail、Google Drive、Maps、Play、普通 Google API、安卓 FCM | Gemini → AI；YouTube → YouTube；大陆子集先直连 |
+| YouTube | YouTube 视频、直播、视频 CDN；YouTube Music 的同域请求 | `youtube.com`、`googlevideo.com` 等；通用 Google 登录/资源可走 Google |
+| Telegram | Telegram、`t.me`、Bot API、集合内服务器 IP | Fragment → 加密货币 |
+| 海外社交 | X/Twitter、Facebook、Instagram、Threads、Messenger、WhatsApp、Discord、LINE、Signal | 含 twimg、fbcdn、cdninstagram 等专用资源；Grok/Meta AI 专用域名 → AI |
+| GitHub | GitHub 网页/Raw/发布下载、GitLab、GitBook、npm 官方仓库 | 名称虽为 GitHub，范围是 `gits` 开发服务集合；Gitee → DIRECT，Copilot 专用域名 → AI |
+| 海外流媒体 | Netflix、Disney+、Prime Video、HBO/Max、Twitch | 不包含所有海外视频网站；TikTok、Spotify、YouTube 另分 |
+| TikTok | TikTok 与集合内视频资源 | 国内抖音 → DIRECT；MarsCode/Trae 的 AI 域名 → AI |
+| Spotify | Spotify 音乐、播客与专用资源 | `spotify.com`、`scdn.co` 等 |
+| Apple | Apple Developer、TestFlight、`tv.apple.com`、指定 Apple 海外服务主机 | 仅命中 `apple-proxy` 且未被大陆规则抢先匹配的请求 |
+| DIRECT（非新增分组） | 微信/QQ、支付宝、淘宝/京东、B 站、抖音、小红书、知乎；普通 Microsoft/Apple 域名；局域网 | 例如 Outlook/Office/OneDrive/Teams 主要域名、App Store/iCloud/APNs；Steam 等已收录下载域名也直连 |
+| 兜底 | 当前没有专门收录的海外网站、论坛、购物和工具 | 如 Reddit、Quora、LinkedIn、Pinterest、Amazon/eBay、Notion 的主域通常在这里；Steam/Epic 商店主要域名也没有游戏专属组 |
+
+Grok/Meta AI 使用独立域名时归 AI；如果某个内嵌功能的请求仍使用 `x.com` / `facebook.com`，则按海外社交处理，域名规则不能按 URL 路径区分。海外游戏加速器流量是否进入本模板，取决于加速器及客户端接管方式。
+
+未分类域名若随后命中大陆 IP 规则则直连，否则走兜底。兜底默认也跟随节点选择，因此“没有专门分类”不会让普通海外请求失去代理。整个应用的共享登录、验证码、通话 IP 和其他依赖仍需看连接日志。
+
 ### FCM 跟随 Google
 
 Google 集合覆盖 `mtalk.google.com`、安装注册等 FCM 域名；另保留 26 个精确 `/32` 推送 IP，也指向 Google。不需要额外分组。
@@ -217,14 +245,31 @@ python scripts/refresh_rules.py --accept-routing-changes # 接受已审核的上
 
 ## 上游与文件索引
 
-AI、crypto 直接采用 HenryChiao 聚合源，清理后生成两种格式：
+公共规则主要读取 HenryChiao 聚合后的文本，在本仓库清理、合并并生成两种格式；并非客户端直接请求每个底层项目。以下为 Henry 文档的来源说明与本模板的采用情况（2026-10-04）：
 
-| 分类 | Henry 文档列出的来源 | 示例范围 |
+表中 BM7 = [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)，Meta = [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat)。
+
+| 分类 | Henry 文档列出的来源 / 本模板实际采用 | 示例范围 |
 |---|---|---|
 | AI | MetaCubeX、SukkaW、ConnersHua、ACL4SSR | OpenAI、Gemini、Claude、Copilot、Groq、Perplexity、xAI、Cursor |
-| 加密货币 | blackmatrix7、MetaCubeX、ACL4SSR | Binance、OKX、Bybit、Bitget、钱包、RPC、行情 |
+| 加密货币 | BM7、Meta、ACL4SSR | Binance、OKX、Bybit、Bitget、集合内钱包/RPC/行情 |
+| Google | BM7、Meta | Google 搜索、邮件、网盘、地图、Play、API |
+| YouTube | BM7、Meta | 视频网站、视频 CDN、相关音乐服务同域请求 |
+| Telegram | 本模板直接读取 Meta 的独立 Telegram 域名与 IP，未依赖 Henry 的社交集合分类 | Telegram、t.me、Bot API、服务器 IP；Fragment 被更早的 crypto 分类接管 |
+| 海外社交 | BM7、Meta | X/Twitter、Facebook、Instagram、Threads、Discord、WhatsApp、LINE、Signal 等 |
+| GitHub（`gits`） | BM7、Meta | GitHub、GitLab、GitBook、npm 等；上游含 Gitee，但本模板大陆优先直连 |
+| 海外流媒体（`streaming`） | 五个原集合均为 BM7、Meta | Netflix、Disney+、Prime Video、HBO/Max、Twitch |
+| TikTok | BM7、Meta、jmdugan/blocklists | TikTok 及相关主机；这里只使用域名分类，不执行广告拦截 |
+| Spotify | BM7、Meta | Spotify 音乐、播客与专用 CDN |
+| Apple 分组（`apple-proxy`） | BM7、Elysian-Realme/FuGfConfig | Apple Developer、TestFlight、部分 Apple 海外服务 |
+| 大陆域名直连（`domestic`） | cn：felixonmars/dnsmasq-china-list；apple-cn：felixonmars、SukkaW；microsoft-cn：Meta；games-cn：BM7、Meta | 大陆网站、Apple/Microsoft 大陆子集、收录的游戏/下载直连域名 |
+| 普通 Microsoft/Apple 直连（`vendor-direct`） | microsoft、apple：BM7、Meta | 普通微软/苹果域名；专门分类先匹配 |
+| 大陆 IP 直连（`cn-ip`） | NobyDa/geoip，经 Henry `cncidr` 导出为 `ipcidr/cn.list` | 未被更早规则分类的大陆目的 IP |
+| FCM IP → Google | BM7、Meta，经 Henry `googlefcm` 集合导出 | 精确推送 IP 补充；FCM 域名由 Google 集合覆盖 |
+| Polymarket、自用网站 | 本仓库个人维护，非 Henry 来源 | polymarket.com、精确 cdn.jucode.cn、shlii.io |
+| 节点选择、自动选择、兜底 | 模板策略逻辑，无独立上游规则集合 | 出口选择、测速、未分类流量 |
 
-Telegram 使用 MetaCubeX 独立域名/IP，FCM 精确 IP 来自 Henry；其他来源 URL 和快照校验值见 [source-manifest.json](source-manifest.json)。
+上游“示例范围”不等于所有请求最终归该组；本模板会清理共享规则并按前述优先级决定归属。具体下载 URL、快照校验值见 [source-manifest.json](source-manifest.json)。大陆 IP 的导出对应关系也已核对 Henry 的 [构建脚本](https://github.com/HenryChiao/MIHOMO_YAMLS/blob/main/.github/workflows/Merge_ruleset.yml)。
 
 - `templates/`：两份长期模板。
 - `rules/`：两份个人文件、公共 MRS 和兼容文本。
