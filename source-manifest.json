@@ -44,8 +44,8 @@
   {
     "name": "domain/cn.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
-    "bytes": 1598859,
-    "sha256": "b06867909f1939cf02de54017ffb6776133c39bab1ad4d4cb3edca2720493bc6",
+    "bytes": 1603632,
+    "sha256": "5c7c50b7b5aa1621c843053ad4a35ef3eb7258cd5d9a873eee9cf709967f56af",
     "ok": true
   },
   {
