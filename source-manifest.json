@@ -16,8 +16,8 @@
   {
     "name": "domain/ai.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/ai.list",
-    "bytes": 4178,
-    "sha256": "036cd395117d332a947b2a07de2a72d726016eb4b6b061cd200a07396b8d7e98",
+    "bytes": 4189,
+    "sha256": "a48e6f67bbc50c4e37be66aad95b443ab4da05e43b60c768b1618dbff2006ddd",
     "ok": true
   },
   {
@@ -44,8 +44,8 @@
   {
     "name": "domain/cn.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
-    "bytes": 1603669,
-    "sha256": "2236d382e5afab4de58cfadddf84e5a23cb85f5516b824daee5cb82c821a509d",
+    "bytes": 1591320,
+    "sha256": "606aaf55d576021a9657e9cacd82c78806ed3748473f8d9aad5a1ba45b2f8996",
     "ok": true
   },
   {
