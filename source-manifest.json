@@ -44,8 +44,8 @@
   {
     "name": "domain/cn.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
-    "bytes": 1587062,
-    "sha256": "0e70c1c8fed31355f59db99640032000225b15639b5ab33a2cd86d8eacbc2da2",
+    "bytes": 1586386,
+    "sha256": "75b3de58bd7f3975e632b47ae2bf8833fdcd81c26f86ef857d4e6ae9cdd50dba",
     "ok": true
   },
   {
@@ -135,8 +135,8 @@
   {
     "name": "domain/tiktok.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/tiktok.list",
-    "bytes": 2846,
-    "sha256": "f13fa40647203e5c5ef7535304d92aa6a9e4cb75bf003716b19a0e261e926665",
+    "bytes": 2896,
+    "sha256": "b0066927aeaeda366f06913cb516b4170faedb8e93a7e13016373fe527f3bd9b",
     "ok": true
   },
   {
