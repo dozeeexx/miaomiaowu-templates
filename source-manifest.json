@@ -65,8 +65,8 @@
   {
     "name": "domain/microsoft.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/microsoft.list",
-    "bytes": 14026,
-    "sha256": "521195c962aaf17b1de112b965b3671ba24a2e9d72d66de2aa238895c517f64e",
+    "bytes": 13986,
+    "sha256": "786a9aff729fa40b83af15eaea41bbfced8423e7b2f3e6bb2c6b0419c480f56f",
     "ok": true
   },
   {
