@@ -121,8 +121,8 @@
   {
     "name": "domain/twitch.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/twitch.list",
-    "bytes": 916,
-    "sha256": "cfd8b59d748431a2f03d7a996ab1dbaf7cbe39cde29cd0149e40793ac27ca293",
+    "bytes": 946,
+    "sha256": "63ef3d363f509da660666734f3924c2adf47a1918a72af0bf092c815e0d8a1c4",
     "ok": true
   },
   {
