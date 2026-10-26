@@ -44,8 +44,8 @@
   {
     "name": "domain/cn.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
-    "bytes": 1580744,
-    "sha256": "ebfec9d6a53b2035d0608dbd2d0afd750bdf68153d9f08600cfd7659e01f36c6",
+    "bytes": 1580731,
+    "sha256": "08667cdc719b595f4147626c5e497c670918b7a21dda6bb6c0e7647b701fc03b",
     "ok": true
   },
   {
@@ -79,8 +79,8 @@
   {
     "name": "domain/apple.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/apple.list",
-    "bytes": 31086,
-    "sha256": "0e628d68da4f317d9fa338b3caa33f05da89d2685a530df85e380c19ea563c39",
+    "bytes": 31074,
+    "sha256": "06d949a0d0a95b704d32d5a9411a12263cc9d08960bcb93309c119803de0af31",
     "ok": true
   },
   {
