@@ -127,6 +127,9 @@
     "apps.apple.com": "DIRECT",
     "apps.mzstatic.com": "DIRECT",
     "apps5.oingo.com": "🌐 Google",
+    "appsgenaiserver-pa.clients.google.com": "🤖 AI",
+    "appsgenaiserver-pa.clients6.google.com": "🤖 AI",
+    "appsgenaiserver-pa.googleapis.com": "🤖 AI",
     "appspot.com": "🌐 Google",
     "appsto.re": "🍎 Apple",
     "apture.com": "🌐 Google",
@@ -4457,6 +4460,7 @@
     "probe.spotify-everywhere.com": "🎧 Spotify",
     "probe.spotify.app.link": "🎧 Spotify",
     "probe.spotify.com": "🎧 Spotify",
+    "probe.spotify.com.edgesuite.net": "🎧 Spotify",
     "probe.spotify.design": "🎧 Spotify",
     "probe.spotify.link": "🎧 Spotify",
     "probe.spotifycdn.com": "🎧 Spotify",
@@ -5697,7 +5701,7 @@
       "🧩 自定义1"
     ]
   ],
-  "overlap_count": 518,
+  "overlap_count": 521,
   "overlap_examples": [
     {
       "domain": "ai.google.dev",
@@ -5852,6 +5856,30 @@
       ]
     },
     {
+      "domain": "appsgenaiserver-pa.clients.google.com",
+      "winner": "🤖 AI",
+      "groups": [
+        "🌐 Google",
+        "🤖 AI"
+      ]
+    },
+    {
+      "domain": "appsgenaiserver-pa.clients6.google.com",
+      "winner": "🤖 AI",
+      "groups": [
+        "🌐 Google",
+        "🤖 AI"
+      ]
+    },
+    {
+      "domain": "appsgenaiserver-pa.googleapis.com",
+      "winner": "🤖 AI",
+      "groups": [
+        "🌐 Google",
+        "🤖 AI"
+      ]
+    },
+    {
       "domain": "bard.google.com",
       "winner": "🤖 AI",
       "groups": [
@@ -5913,30 +5941,6 @@
       "groups": [
         "✈️ Telegram",
         "💬 海外社交"
-      ]
-    },
-    {
-      "domain": "copilot-proxy.githubusercontent.com",
-      "winner": "🤖 AI",
-      "groups": [
-        "🐙 GitHub",
-        "🤖 AI"
-      ]
-    },
-    {
-      "domain": "copilot-telemetry-service.githubusercontent.com",
-      "winner": "🤖 AI",
-      "groups": [
-        "🐙 GitHub",
-        "🤖 AI"
-      ]
-    },
-    {
-      "domain": "copilot-telemetry.githubusercontent.com",
-      "winner": "🤖 AI",
-      "groups": [
-        "🐙 GitHub",
-        "🤖 AI"
       ]
     }
   ],

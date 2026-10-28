@@ -16,8 +16,8 @@
   {
     "name": "domain/ai.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/ai.list",
-    "bytes": 4432,
-    "sha256": "b46146740c16b6e1ce3a72319c325909bcee190907ac89fa854a8db9b6dd2f18",
+    "bytes": 4543,
+    "sha256": "9547fac3a214c1a5cc2a7e107c1e3bb432131bb72e791ae531394d19849c27d7",
     "ok": true
   },
   {
@@ -114,8 +114,8 @@
   {
     "name": "domain/spotify.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/spotify.list",
-    "bytes": 638,
-    "sha256": "c493403139e6863b798a3f4a7040d82dffe95b481e22a5857dc41c576b8658da",
+    "bytes": 640,
+    "sha256": "aba9379cf74682aa7c39993dbff86a44b09645b9b9877f9096de4c3ca1b7ee94",
     "ok": true
   },
   {
