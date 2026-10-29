@@ -16,8 +16,8 @@
   {
     "name": "domain/ai.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/ai.list",
-    "bytes": 4543,
-    "sha256": "9547fac3a214c1a5cc2a7e107c1e3bb432131bb72e791ae531394d19849c27d7",
+    "bytes": 4654,
+    "sha256": "df82b5bc3ff92f17646b5cb137af953fcdebb0c09cbf470558dcefdf2be53adf",
     "ok": true
   },
   {
@@ -44,8 +44,8 @@
   {
     "name": "domain/cn.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/cn.list",
-    "bytes": 1580731,
-    "sha256": "08667cdc719b595f4147626c5e497c670918b7a21dda6bb6c0e7647b701fc03b",
+    "bytes": 1585341,
+    "sha256": "c6ebe84b670d4cc767805ca8d68ad2c7fc523386502b24ac9ff52e683e4c779a",
     "ok": true
   },
   {
@@ -86,8 +86,8 @@
   {
     "name": "domain/socialmedia.list",
     "url": "https://raw.githubusercontent.com/HenryChiao/MIHOMO_YAMLS/ruleset/meta/domain/socialmedia.list",
-    "bytes": 11743,
-    "sha256": "26d0bfb4e2a21494d169f546a9dd2d4ea700de42cfcdfcc9aa75f61897c591f1",
+    "bytes": 11767,
+    "sha256": "27f60f0db5a21cf5415f0095e352b3aa0c978a111b05c2e355c58adb06e75447",
     "ok": true
   },
   {
