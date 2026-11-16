@@ -582,6 +582,7 @@
     "dacebook.com": "💬 海外社交",
     "dai3fd1oh325y.cloudfront.net": "🎬 海外流媒体",
     "daily-cloudcode-pa.googleapis.com": "🤖 AI",
+    "daily-cloudcode-pa.sandbox.googleapis.com": "🤖 AI",
     "dapp.review": "💰 加密货币",
     "dappradar.com": "💰 加密货币",
     "dart.dev": "🌐 Google",
@@ -5720,7 +5721,7 @@
       "🧩 自定义1"
     ]
   ],
-  "overlap_count": 524,
+  "overlap_count": 525,
   "overlap_examples": [
     {
       "domain": "ai.google.dev",
