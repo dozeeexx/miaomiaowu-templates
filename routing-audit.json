@@ -597,6 +597,7 @@
     "dclk": "🌐 Google",
     "ddacn6pr5v0tl.cloudfront.net": "🎬 海外流媒体",
     "debank.com": "💰 加密货币",
+    "debot.ai": "💰 加密货币",
     "debug.com": "🌐 Google",
     "debugproject.com": "🌐 Google",
     "deepmind.com": "🤖 AI",
@@ -1592,6 +1593,7 @@
     "goolge.com": "🌐 Google",
     "gooogle.com": "🌐 Google",
     "gotoda.co": "💰 加密货币",
+    "graph.facebook.com": "🤖 AI",
     "graph.org": "✈️ Telegram",
     "grazie.ai": "🤖 AI",
     "grazie.aws.intellij.net": "🤖 AI",
@@ -2774,6 +2776,7 @@
     "probe.dcabtc.com": "💰 加密货币",
     "probe.dclk": "🌐 Google",
     "probe.debank.com": "💰 加密货币",
+    "probe.debot.ai": "💰 加密货币",
     "probe.debug.com": "🌐 Google",
     "probe.debugproject.com": "🌐 Google",
     "probe.deepmind.com": "🤖 AI",
@@ -5721,7 +5724,7 @@
       "🧩 自定义1"
     ]
   ],
-  "overlap_count": 525,
+  "overlap_count": 526,
   "overlap_examples": [
     {
       "domain": "ai.google.dev",
